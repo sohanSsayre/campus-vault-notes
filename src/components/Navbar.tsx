@@ -68,8 +68,16 @@ const Navbar = ({ currentView, onNavigate }: NavbarProps) => {
                 <button
                   key={item}
                   onClick={() => {
-                    onNavigate(item.toLowerCase());
-                    setMobileOpen(false);
+                    if (item.toLowerCase() === "browse") {
+                      onNavigate("home");
+                      setMobileOpen(false);
+                      setTimeout(() => {
+                        document.getElementById("browse-section")?.scrollIntoView({ behavior: "smooth" });
+                      }, 100);
+                    } else {
+                      onNavigate(item.toLowerCase());
+                      setMobileOpen(false);
+                    }
                   }}
                   className="text-sm font-medium uppercase tracking-widest text-left text-muted-foreground hover:text-cyan-focus transition-colors"
                 >
