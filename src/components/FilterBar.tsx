@@ -18,7 +18,7 @@ const FilterBar = ({ filters, onFilterChange, onSearch }: FilterBarProps) => {
     : ALL_SUBJECTS;
 
   return (
-    <section className="mb-16">
+    <section id="browse-section" className="mb-16 scroll-mt-24">
       <div className="p-2 rounded-3xl glass-surface flex flex-col md:flex-row gap-2">
         <select
           className="bg-transparent p-4 outline-none border-b md:border-b-0 md:border-r border-white/10 flex-1 text-foreground"
