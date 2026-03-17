@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Star, Download } from "lucide-react";
+import { Download } from "lucide-react";
 import type { Resource } from "@/data/mockResources";
 
 const ResourceCard = ({ resource }: { resource: Resource }) => (
@@ -16,17 +16,13 @@ const ResourceCard = ({ resource }: { resource: Resource }) => (
     >
       <div className="flex justify-between items-start mb-4">
         <span className="neon-badge">{resource.type}</span>
-        <div className="flex items-center gap-1 text-yellow-400">
-          <Star className="w-4 h-4 fill-current" />
-          <span className="text-sm font-mono">{resource.rating}</span>
-        </div>
       </div>
 
       <h3 className="text-xl font-bold mb-1 group-hover:text-primary transition-colors duration-300">
         {resource.title}
       </h3>
       <p className="text-muted-foreground text-sm mb-6">
-        {resource.subject} • {resource.sem}
+        {resource.subject} • {resource.class}
       </p>
 
       <div className="flex items-center gap-3 mb-6 p-3 rounded-xl bg-black/40">
@@ -35,16 +31,16 @@ const ResourceCard = ({ resource }: { resource: Resource }) => (
           <p className="text-[10px] text-muted-foreground uppercase font-bold tracking-widest">
             Uploaded By
           </p>
-          <p className="text-sm font-medium font-mono">
-            {resource.author}{" "}
-            <span className="text-muted-foreground">({resource.year})</span>
-          </p>
+          <p className="text-sm font-medium font-mono">{resource.uploadedBy}</p>
         </div>
       </div>
 
-      <button className="w-full py-3 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 transition-all flex items-center justify-center gap-2 font-bold">
+      <a
+        href={resource.link}
+        className="w-full py-3 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 transition-all flex items-center justify-center gap-2 font-bold"
+      >
         <Download className="w-4 h-4" /> Download
-      </button>
+      </a>
     </motion.div>
   </motion.div>
 );
