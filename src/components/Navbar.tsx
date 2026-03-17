@@ -26,7 +26,16 @@ const Navbar = ({ currentView, onNavigate }: NavbarProps) => {
           {NAV_ITEMS.map((item) => (
             <button
               key={item}
-              onClick={() => onNavigate(item.toLowerCase())}
+              onClick={() => {
+                if (item.toLowerCase() === "browse") {
+                  onNavigate("home");
+                  setTimeout(() => {
+                    document.getElementById("browse-section")?.scrollIntoView({ behavior: "smooth" });
+                  }, 100);
+                } else {
+                  onNavigate(item.toLowerCase());
+                }
+              }}
               className={`transition-colors duration-300 ${
                 currentView === item.toLowerCase()
                   ? "text-cyan-focus"
