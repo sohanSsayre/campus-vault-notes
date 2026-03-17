@@ -10,9 +10,11 @@ const ResourceGrid = ({ resources }: { resources: Resource[] }) => (
       ))}
     </AnimatePresence>
     {resources.length === 0 && (
-      <div className="col-span-full text-center py-20 text-muted-foreground">
-        <p className="text-xl font-bold mb-2">No resources found</p>
-        <p className="text-sm">Try adjusting your filters</p>
+      <div className="col-span-full text-center py-20">
+        <p className="text-xl font-bold mb-3 text-muted-foreground">No resources found</p>
+        <p className="text-sm text-transparent bg-clip-text bg-gradient-to-r from-[hsl(263,70%,58%)] to-[hsl(187,80%,43%)]">
+          Resources coming soon for this subject 🚀
+        </p>
       </div>
     )}
   </div>

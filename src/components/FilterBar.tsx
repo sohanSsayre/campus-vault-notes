@@ -1,10 +1,9 @@
 import { Search } from "lucide-react";
-import { SUBJECTS_BY_CLASS, ALL_SUBJECTS } from "@/data/mockResources";
+import { SUBJECTS_BY_CLASS, ALL_SUBJECTS, CLASSES } from "@/data/mockResources";
 
 interface Filters {
   class: string;
   subject: string;
-  sem: string;
 }
 
 interface FilterBarProps {
@@ -29,10 +28,9 @@ const FilterBar = ({ filters, onFilterChange, onSearch }: FilterBarProps) => {
           }
         >
           <option value="" className="bg-card">Select Class</option>
-          <option value="FY" className="bg-card">First Year (FY)</option>
-          <option value="SY" className="bg-card">Second Year (SY)</option>
-          <option value="TY" className="bg-card">Third Year (TY)</option>
-          <option value="Final Year" className="bg-card">Final Year</option>
+          {CLASSES.map((c) => (
+            <option key={c.value} value={c.value} className="bg-card">{c.label}</option>
+          ))}
         </select>
 
         <select
@@ -45,19 +43,6 @@ const FilterBar = ({ filters, onFilterChange, onSearch }: FilterBarProps) => {
           <option value="" className="bg-card">Select Subject</option>
           {subjects.map((s) => (
             <option key={s} value={s} className="bg-card">{s}</option>
-          ))}
-        </select>
-
-        <select
-          className="bg-transparent p-4 outline-none border-b md:border-b-0 md:border-r border-white/10 flex-1 text-foreground"
-          value={filters.sem}
-          onChange={(e) =>
-            onFilterChange({ ...filters, sem: e.target.value })
-          }
-        >
-          <option value="" className="bg-card">Select Semester</option>
-          {[1, 2, 3, 4, 5, 6, 7, 8].map((n) => (
-            <option key={n} value={`Sem ${n}`} className="bg-card">Sem {n}</option>
           ))}
         </select>
 

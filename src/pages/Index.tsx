@@ -3,27 +3,24 @@ import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
 import FilterBar from "@/components/FilterBar";
 import ResourceGrid from "@/components/ResourceGrid";
-import UploadPage from "@/components/UploadPage";
 import AboutSection from "@/components/AboutSection";
-import { MOCK_RESOURCES } from "@/data/mockResources";
+import { RESOURCES } from "@/data/mockResources";
 
 interface Filters {
   class: string;
   subject: string;
-  sem: string;
 }
 
 const Index = () => {
   const [view, setView] = useState("home");
-  const [filters, setFilters] = useState<Filters>({ class: "", subject: "", sem: "" });
-  const [activeFilters, setActiveFilters] = useState<Filters>({ class: "", subject: "", sem: "" });
+  const [filters, setFilters] = useState<Filters>({ class: "", subject: "" });
+  const [activeFilters, setActiveFilters] = useState<Filters>({ class: "", subject: "" });
 
   const filteredData = useMemo(() => {
-    return MOCK_RESOURCES.filter(
+    return RESOURCES.filter(
       (r) =>
         (!activeFilters.class || r.class === activeFilters.class) &&
-        (!activeFilters.subject || r.subject === activeFilters.subject) &&
-        (!activeFilters.sem || r.sem === activeFilters.sem)
+        (!activeFilters.subject || r.subject === activeFilters.subject)
     );
   }, [activeFilters]);
 
@@ -32,8 +29,8 @@ const Index = () => {
   const handleNavigate = (v: string) => {
     setView(v);
     if (v === "browse") {
-      setFilters({ class: "", subject: "", sem: "" });
-      setActiveFilters({ class: "", subject: "", sem: "" });
+      setFilters({ class: "", subject: "" });
+      setActiveFilters({ class: "", subject: "" });
     }
   };
 
@@ -43,9 +40,7 @@ const Index = () => {
       <main className="max-w-7xl mx-auto px-4 sm:px-6 py-12">
         {(view === "home" || view === "browse") && (
           <>
-            {view === "home" && (
-              <HeroSection onUploadClick={() => setView("upload")} />
-            )}
+            {view === "home" && <HeroSection />}
             <FilterBar
               filters={filters}
               onFilterChange={setFilters}
@@ -54,7 +49,6 @@ const Index = () => {
             <ResourceGrid resources={filteredData} />
           </>
         )}
-        {view === "upload" && <UploadPage onBack={() => setView("home")} />}
         {view === "about" && <AboutSection />}
       </main>
     </div>

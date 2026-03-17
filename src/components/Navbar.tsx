@@ -7,7 +7,7 @@ interface NavbarProps {
   onNavigate: (view: string) => void;
 }
 
-const NAV_ITEMS = ["Home", "Browse", "Upload", "About"];
+const NAV_ITEMS = ["Home", "Browse", "About"];
 
 const Navbar = ({ currentView, onNavigate }: NavbarProps) => {
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -22,7 +22,6 @@ const Navbar = ({ currentView, onNavigate }: NavbarProps) => {
           CAMPUSVAULT 🎓
         </button>
 
-        {/* Desktop nav */}
         <div className="hidden md:flex gap-8 text-sm font-medium uppercase tracking-widest">
           {NAV_ITEMS.map((item) => (
             <button
@@ -39,7 +38,6 @@ const Navbar = ({ currentView, onNavigate }: NavbarProps) => {
           ))}
         </div>
 
-        {/* Mobile toggle */}
         <button
           className="md:hidden text-foreground"
           onClick={() => setMobileOpen(!mobileOpen)}
@@ -48,7 +46,6 @@ const Navbar = ({ currentView, onNavigate }: NavbarProps) => {
         </button>
       </div>
 
-      {/* Mobile menu */}
       <AnimatePresence>
         {mobileOpen && (
           <motion.div
