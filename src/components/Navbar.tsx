@@ -26,7 +26,16 @@ const Navbar = ({ currentView, onNavigate }: NavbarProps) => {
           {NAV_ITEMS.map((item) => (
             <button
               key={item}
-              onClick={() => onNavigate(item.toLowerCase())}
+              onClick={() => {
+                if (item.toLowerCase() === "browse") {
+                  onNavigate("home");
+                  setTimeout(() => {
+                    document.getElementById("browse-section")?.scrollIntoView({ behavior: "smooth" });
+                  }, 100);
+                } else {
+                  onNavigate(item.toLowerCase());
+                }
+              }}
               className={`transition-colors duration-300 ${
                 currentView === item.toLowerCase()
                   ? "text-cyan-focus"
@@ -59,8 +68,16 @@ const Navbar = ({ currentView, onNavigate }: NavbarProps) => {
                 <button
                   key={item}
                   onClick={() => {
-                    onNavigate(item.toLowerCase());
-                    setMobileOpen(false);
+                    if (item.toLowerCase() === "browse") {
+                      onNavigate("home");
+                      setMobileOpen(false);
+                      setTimeout(() => {
+                        document.getElementById("browse-section")?.scrollIntoView({ behavior: "smooth" });
+                      }, 100);
+                    } else {
+                      onNavigate(item.toLowerCase());
+                      setMobileOpen(false);
+                    }
                   }}
                   className="text-sm font-medium uppercase tracking-widest text-left text-muted-foreground hover:text-cyan-focus transition-colors"
                 >
